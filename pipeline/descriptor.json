@@ -75,15 +75,15 @@
     	"Volume" : [
     		{
     			"Name" : "input",
-    			"Value" : "{{temp.project.home}}/input"
+    			"Value" : "$temp.project.home$/input"
     		},	
     		{
     			"Name" : "artifacts",
-    			"Value" : "{{temp.project.home}}/artifacts"
+    			"Value" : "$temp.project.home$/artifacts"
     		},	
     		{
     			"Name" : "output",
-    			"Value" : "{{temp.project.home}}/output"
+    			"Value" : "$temp.project.home$/output"
     		}	
     	]
     }
