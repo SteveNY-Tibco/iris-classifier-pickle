@@ -14,7 +14,7 @@
             "Runtime":"flogo",
             "Name":"s-0",
 			"Replicas": 1,
-			"DockerImage" : "bigoyang/pipeline-datasource:0.2.0",
+			"DockerImage" : "bigoyang/pipeline-datasource:0.3.0",
 			"Volumes" : [
 				{
 					"Name" : "input",
