@@ -1,0 +1,31 @@
+jobs:
+  include:
+    - stage: test
+      matrix:
+        include:
+          - language: python
+            python: 3.7
+            before_script:
+              - cd ./components/pickle-iris-classifier01/tests
+            script:
+              - python -m unittest -v testModel
+            after_script:
+              - cd ../../../
+
+    -stage: push_project
+      sudo: required
+      before_install:
+        - docker run bigoyang/python-model:0.4.0
+      script:
+        - docker-compose build
+        - docker-compose run test
+
+notifications:
+  email: false
+  hipchat:
+    template:
+      - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}
+        (<a href="%{build_url}">Details</a> | <a href="%{compare_url}">Change view</a>)'
+    format: html
+    rooms:
+    - secure: "PR3OjYP6aML3f/v9xonW8oASpaU2DGD0LDT/8keH2/PV66gY9MB8Vt6gTMpmEa/XctD5mMn7GCviSjrrZ/abp6NFPembWgAMf/RvBpvBNml8jzRFvzitcwNWwqyZFM9rM2uqJU1SHrPfB2tTKznthAgOZXMc6N0xDa4apK3fR+0="
