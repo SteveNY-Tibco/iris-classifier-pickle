@@ -1,12 +1,30 @@
 jobs:
   include:
-    -stage: push_project
+    - stage: test
+      matrix:
+        include:
+          - language: python
+            python: 3.7
+            before_script:
+              - cd ./components/pickle-iris-classifier01/tests
+            script:
+              - python -m unittest -v testModel
+            after_script:
+              - cd ../../../
+
+    -stage: build_image
       sudo: required
+      services:
+        - docker
+      env:
+        COMPOSE_VERSION: 1.4.1
       before_install:
-        - ls
+        - curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        - chmod +x docker-compose
+        - sudo mv docker-compose /usr/local/bin
       script:
-        - cd ..
-        - ls
+        - docker-compose build
+        - docker-compose run test
 
 notifications:
   email: false
