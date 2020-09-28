@@ -3,3 +3,4 @@ language: python
 python: 3.7
 script:
  - python compress_project.py
+ - python push_project.py
