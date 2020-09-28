@@ -1,2 +1,14 @@
 jobs:
+  include:
+    - stage: test
+      matrix:
+        include:
+          - language: python
+            python: 3.7
+            before_script:
+              - cd ./components/pickle-iris-classifier01/tests
+            script:
+              - python -m unittest -v testModel
+            after_script:
+              - cd ../../../
 notifications:
