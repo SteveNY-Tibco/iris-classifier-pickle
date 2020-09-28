@@ -7,4 +7,4 @@ def main():
   except:
     return 1
   finally:
-    print 'Finally: cleanup'
+    print('Finally: cleanup')
