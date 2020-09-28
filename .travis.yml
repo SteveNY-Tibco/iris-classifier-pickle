@@ -1,24 +1,12 @@
 jobs:
   include:
-    - stage: test
-      matrix:
-        include:
-          - language: python
-            python: 3.7
-            before_script:
-              - cd ./components/pickle-iris-classifier01/tests
-            script:
-              - python -m unittest -v testModel
-            after_script:
-              - cd ../../../
-
     -stage: push_project
       sudo: required
       before_install:
-        - docker run bigoyang/python-model:0.4.0
+        - ls
       script:
-        - docker-compose build
-        - docker-compose run test
+        - cd ..
+        - ls
 
 notifications:
   email: false
